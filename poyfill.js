@@ -36,7 +36,7 @@ logNums.call(obj, 1, 2); // original call method on function prototype.
 logNums.myCall(obj, 2, 4) //polyfill
 
 Function.prototype.myApply = function (thisContext, args = []) {
-  // Write your code here.
+
   const symbol = Symbol();
   let originalFunc = this;
   thisContext[symbol] = originalFunc;
@@ -48,7 +48,7 @@ Function.prototype.myApply = function (thisContext, args = []) {
 };
 
 Function.prototype.myBind = function (thisContext, ...args) {
-  // Write your code here.
+
   return (...args2) => {
     const symbol = Symbol();
   let originalFunc = this;

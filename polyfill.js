@@ -59,3 +59,4 @@ Function.prototype.myBind = function (thisContext, ...args) {
 
   return val;
   }
+}

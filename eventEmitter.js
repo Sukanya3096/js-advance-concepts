@@ -1,23 +1,23 @@
-class EventTarget {
+class EventEmitter {
     constructor() {
-        this.listeners = Object.create(null); // to get rid of any unnecessary methods associated with the prototype
+        this.observers = Object.create(null); // to get rid of any unnecessary methods associated with the prototype
     }
   
-    addEventListener(name, callback) {
+    on(name, callback) {
       if (!this.listeners.hasOwnProperty(name)) {
-        this.listeners[name] = new Set(callback);
+        this.observers[name] = new Set(callback);
       } else {
-        this.listeners[name].add(callback);
+        this.observers[name].add(callback);
       }
     }
   
-    removeEventListener(name, callback) {
-      this.listeners[name]?.delete(callback);
+    off(name, callback) {
+      this.observers[name]?.delete(callback);
     }
   
-    dispatchEvent(name) {
-      this.listeners[name]?.forEach(callback => {
-        callback();
+    emit(name, ...args) {
+      this.observers[name]?.forEach(callback => {
+        callback.apply(null, args);
       });
     }
   }

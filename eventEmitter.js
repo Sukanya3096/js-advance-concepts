@@ -1,6 +1,6 @@
 class EventTarget {
     constructor() {
-        this.listeners = {};
+        this.listeners = Object.create(null); // to get rid of any unnecessary methods associated with the prototype
     }
   
     addEventListener(name, callback) {
